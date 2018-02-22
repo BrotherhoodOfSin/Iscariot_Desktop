@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Iscariot_Desk
@@ -25,12 +19,16 @@ namespace Iscariot_Desk
                 btn_auth.Enabled = false;
 
                 gb_log_pass.Visible = true;
+
+                this.Height = 463;
             }
             else
             {
                 btn_auth.Enabled = true;
 
                 gb_log_pass.Visible = false;
+
+                this.Height = 320;
             }
         }
 
@@ -48,6 +46,8 @@ namespace Iscariot_Desk
             btn_auth.Enabled = true;
 
             cb_user.SelectedIndex = 0;
+
+            this.Height = 320;
         }
 
         //Смена текста Логина
@@ -134,11 +134,13 @@ namespace Iscariot_Desk
         //Триггер кнопки перехода к Рассписанию
         private void btn_auth_Click(object sender, EventArgs e)
         {
+            
             if ((string)cb_user.SelectedItem == "Редактор")
             {
                 MessageBox.Show("Сделай проверку, лох!");
                 return;
             }
+            
             
             this.Visible = false;
 
@@ -147,6 +149,12 @@ namespace Iscariot_Desk
             form_shed.user_group = (string)cb_user.SelectedItem;
 
             form_shed.Visible = true;
+        }
+
+        //выход из приложения по нажатию "Х"
+        private void FormAuth_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -160,12 +160,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(229, 424);
+            this.ClientSize = new System.Drawing.Size(229, 281);
             this.Controls.Add(this.gr_user);
             this.Controls.Add(this.gb_log_pass);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormAuth";
             this.Text = "Вход";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormAuth_FormClosed);
             this.Load += new System.EventHandler(this.FormAuth_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.gb_log_pass.ResumeLayout(false);
