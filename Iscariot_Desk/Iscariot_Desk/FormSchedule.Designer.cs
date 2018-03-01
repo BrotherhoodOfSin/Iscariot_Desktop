@@ -63,6 +63,7 @@
             this.sun_ch = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gb_edit = new System.Windows.Forms.GroupBox();
             this.btn_save = new System.Windows.Forms.Button();
+            this.btn_schload = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.gb_View.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_schedule_z)).BeginInit();
@@ -99,6 +100,7 @@
             // 
             // gb_View
             // 
+            this.gb_View.Controls.Add(this.btn_schload);
             this.gb_View.Controls.Add(this.cb_term);
             this.gb_View.Controls.Add(this.lbl_term);
             this.gb_View.Controls.Add(this.cb_sec);
@@ -121,12 +123,7 @@
             // cb_term
             // 
             this.cb_term.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_term.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4"});
-            this.cb_term.Location = new System.Drawing.Point(571, 36);
+            this.cb_term.Location = new System.Drawing.Point(510, 34);
             this.cb_term.Name = "cb_term";
             this.cb_term.Size = new System.Drawing.Size(101, 21);
             this.cb_term.TabIndex = 11;
@@ -136,7 +133,7 @@
             // lbl_term
             // 
             this.lbl_term.AutoSize = true;
-            this.lbl_term.Location = new System.Drawing.Point(526, 39);
+            this.lbl_term.Location = new System.Drawing.Point(465, 37);
             this.lbl_term.Name = "lbl_term";
             this.lbl_term.Size = new System.Drawing.Size(37, 13);
             this.lbl_term.TabIndex = 10;
@@ -145,9 +142,7 @@
             // cb_sec
             // 
             this.cb_sec.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_sec.Items.AddRange(new object[] {
-            "Проф. 1"});
-            this.cb_sec.Location = new System.Drawing.Point(398, 36);
+            this.cb_sec.Location = new System.Drawing.Point(357, 34);
             this.cb_sec.Name = "cb_sec";
             this.cb_sec.Size = new System.Drawing.Size(101, 21);
             this.cb_sec.TabIndex = 9;
@@ -157,7 +152,7 @@
             // lbl_sec
             // 
             this.lbl_sec.AutoSize = true;
-            this.lbl_sec.Location = new System.Drawing.Point(348, 39);
+            this.lbl_sec.Location = new System.Drawing.Point(307, 37);
             this.lbl_sec.Name = "lbl_sec";
             this.lbl_sec.Size = new System.Drawing.Size(44, 13);
             this.lbl_sec.TabIndex = 8;
@@ -166,13 +161,7 @@
             // cb_spec
             // 
             this.cb_spec.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_spec.Items.AddRange(new object[] {
-            "Строит.",
-            "ПМИ",
-            "ПИвЛ",
-            "МиИ",
-            "ФиИ"});
-            this.cb_spec.Location = new System.Drawing.Point(234, 36);
+            this.cb_spec.Location = new System.Drawing.Point(203, 34);
             this.cb_spec.Name = "cb_spec";
             this.cb_spec.Size = new System.Drawing.Size(101, 21);
             this.cb_spec.TabIndex = 7;
@@ -182,7 +171,7 @@
             // lbl_spec
             // 
             this.lbl_spec.AutoSize = true;
-            this.lbl_spec.Location = new System.Drawing.Point(186, 39);
+            this.lbl_spec.Location = new System.Drawing.Point(155, 37);
             this.lbl_spec.Name = "lbl_spec";
             this.lbl_spec.Size = new System.Drawing.Size(42, 13);
             this.lbl_spec.TabIndex = 6;
@@ -191,10 +180,7 @@
             // cb_fak
             // 
             this.cb_fak.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_fak.Items.AddRange(new object[] {
-            "ФМФ",
-            "ХГФ"});
-            this.cb_fak.Location = new System.Drawing.Point(70, 36);
+            this.cb_fak.Location = new System.Drawing.Point(51, 34);
             this.cb_fak.Name = "cb_fak";
             this.cb_fak.Size = new System.Drawing.Size(101, 21);
             this.cb_fak.TabIndex = 5;
@@ -204,7 +190,7 @@
             // lbl_fak
             // 
             this.lbl_fak.AutoSize = true;
-            this.lbl_fak.Location = new System.Drawing.Point(25, 39);
+            this.lbl_fak.Location = new System.Drawing.Point(6, 37);
             this.lbl_fak.Name = "lbl_fak";
             this.lbl_fak.Size = new System.Drawing.Size(39, 13);
             this.lbl_fak.TabIndex = 4;
@@ -366,6 +352,16 @@
             this.btn_save.UseVisualStyleBackColor = true;
             this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
+            // btn_schload
+            // 
+            this.btn_schload.Location = new System.Drawing.Point(625, 33);
+            this.btn_schload.Name = "btn_schload";
+            this.btn_schload.Size = new System.Drawing.Size(75, 21);
+            this.btn_schload.TabIndex = 12;
+            this.btn_schload.Text = "Загрузить";
+            this.btn_schload.UseVisualStyleBackColor = true;
+            this.btn_schload.Click += new System.EventHandler(this.btn_schload_Click);
+            // 
             // FormSchedule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -429,5 +425,6 @@
         private System.Windows.Forms.ComboBox cb_spec;
         private System.Windows.Forms.Label lbl_spec;
         private System.Windows.Forms.Button btn_save;
+        private System.Windows.Forms.Button btn_schload;
     }
 }

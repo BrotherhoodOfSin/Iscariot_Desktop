@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Net.Http;
+using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 
 namespace Iscariot_Desk
 {
@@ -11,17 +14,6 @@ namespace Iscariot_Desk
 
         private bool flag_refresh = false;
         private bool flag_saved = true;
-
-        //Для ФМФ
-        string[] fmf_specs = new string[] { "Строит.", "ПМИ", "ПИвЛ", "МиИ", "ФиИ" };
-        string[] stroit_prof = new string[] { "Пром.", "Гражд." };
-        string[] pmi_prof = new string[] { "Мат. и Инф. Мод." };
-        string[] pivl_prof = new string[] { "Проф. 1" };
-        string[] mii_prof = new string[] { "Проф. 1" };
-        string[] fii_prof = new string[] { "Проф. 1" };
-
-        //Для ХГФ
-        
 
         public FormSchedule()
         {
@@ -50,10 +42,7 @@ namespace Iscariot_Desk
 
             flag_saved = true;
 
-            cb_fak.SelectedIndex = 0;
-            cb_spec.SelectedIndex = 0;
-            cb_sec.SelectedIndex = 0;
-            cb_term.SelectedIndex = 0;
+            get_from_server("first");
 
             if (user_group == "Редактор")
             {
@@ -73,7 +62,7 @@ namespace Iscariot_Desk
 
                 this.Height = 468;
             }
-
+            
             //Добавление кол-ва пар
             dgv_schedule_ch.RowCount = 4;
             dgv_schedule_z.RowCount = 4;
@@ -162,7 +151,7 @@ namespace Iscariot_Desk
                     break;
             }
 
-            flag_saved = false;
+            flag_saved = false;            
         }
 
         //Закрытие формы
@@ -191,15 +180,11 @@ namespace Iscariot_Desk
                 flag_saved = true;
             }
 
-            if ((string)cb_fak.SelectedItem == "ФМФ")
-            {
-                cb_spec.Items.Clear();
-                cb_spec.Items.AddRange(fmf_specs);
-            }
+            get_from_server("0");
 
             if (flag_refresh == false)
             {
-                refresh_dgvs(1, 0, 0, 0);
+                //refresh_dgvs(1, 0, 0, 0);
             }
         }
 
@@ -212,44 +197,11 @@ namespace Iscariot_Desk
                 flag_saved = true;
             }
 
-            if ((string)cb_fak.SelectedItem == "ФМФ")
-            {
-                cb_sec.Items.Clear();
-
-                switch (cb_spec.SelectedIndex)
-                {
-                    case 0:
-                        cb_sec.Items.AddRange(stroit_prof);
-                        break;
-                    case 1:
-                        cb_sec.Items.AddRange(pmi_prof);
-                        break;
-                    case 2:
-                        cb_sec.Items.AddRange(pivl_prof);
-                        break;
-                    case 3:
-                        cb_sec.Items.AddRange(mii_prof);
-                        break;
-                    case 4:
-                        cb_sec.Items.AddRange(fii_prof);
-                        break;
-                }
-
-                cb_term.Items.Clear();
-
-                if (cb_spec.SelectedIndex == 0 | cb_spec.SelectedIndex == 1 | cb_spec.SelectedIndex == 2)
-                {
-                    cb_term.Items.AddRange(new string[] { "1", "2", "3", "4" });
-                }
-                else
-                {
-                    cb_term.Items.AddRange(new string[] { "1", "2", "3", "4", "5" });
-                }
-            }
+            get_from_server("1");
 
             if (flag_refresh == false)
             {
-                refresh_dgvs(0, 1, 0, 0);
+                //refresh_dgvs(0, 1, 0, 0);
             }
         }
 
@@ -262,9 +214,11 @@ namespace Iscariot_Desk
                 flag_saved = true;
             }
 
+            get_from_server("2");
+
             if (flag_refresh == false)
             {
-                refresh_dgvs(0, 0, 1, 0);
+                //refresh_dgvs(0, 0, 1, 0);
             }
         }
 
@@ -279,7 +233,7 @@ namespace Iscariot_Desk
 
             if (flag_refresh == false)
             {
-                refresh_dgvs(0, 0, 0, 1);
+                //refresh_dgvs(0, 0, 0, 1);
             }
         }
 
@@ -337,6 +291,73 @@ namespace Iscariot_Desk
             }
         }
 
+        // -------- Загрузка с сервера --------
+        private async void get_from_server(string param)
+        {
+            string json_async_string = "http://iscariotserver.azurewebsites.net/api/schedule?";
+            string json = "";
+            JArray jArray;
+            JObject jObject;
+
+            switch (param)
+            {
+                case "first":
+                    {
+                        json = await (await new HttpClient().GetAsync(json_async_string)).Content.ReadAsStringAsync();
+                        jArray = JArray.Parse(json);
+
+                        cb_fak.Items.Clear();
+                        cb_fak.Items.AddRange((string[])jArray.ToObject(typeof(string[])));
+
+                        break;
+                    }
+                case "0":
+                    {
+                        json_async_string += "faculty=" + cb_fak.SelectedItem;
+                        json = await (await new HttpClient().GetAsync(json_async_string)).Content.ReadAsStringAsync();
+                        jArray = JArray.Parse(json);
+
+                        cb_spec.Items.Clear();
+                        cb_spec.Items.AddRange((string[])jArray.ToObject(typeof(string[])));
+
+                        break;
+                    }
+                case "1":
+                    {
+                        json_async_string += "faculty=" + cb_fak.SelectedItem + "&specialty=" + cb_spec.SelectedItem;
+                        json = await (await new HttpClient().GetAsync(json_async_string)).Content.ReadAsStringAsync();
+                        jArray = JArray.Parse(json);
+
+                        cb_sec.Items.Clear();
+                        cb_sec.Items.AddRange((string[])jArray.ToObject(typeof(string[])));
+
+                        break;
+                    }
+                case "2":
+                    {
+                        json_async_string += "faculty=" + cb_fak.SelectedItem + "&specialty=" + cb_spec.SelectedItem +"&section=" + cb_sec.SelectedItem;
+                        json = await (await new HttpClient().GetAsync(json_async_string)).Content.ReadAsStringAsync();
+                        jArray = JArray.Parse(json);
+
+                        cb_term.Items.Clear();
+                        cb_term.Items.AddRange((string[])jArray.ToObject(typeof(string[])));
+
+                        break;
+                    }
+                case "load_dgvs":
+                    {
+                        json_async_string += "faculty=" + cb_fak.SelectedItem + "&specialty=" + cb_spec.SelectedItem + "&section=" + cb_sec.SelectedItem + "&term=" + cb_term.SelectedItem;
+                        json = await (await new HttpClient().GetAsync(json_async_string)).Content.ReadAsStringAsync();
+                        jObject = JObject.Parse(json);
+
+                        
+
+                        break;
+                    }
+            }
+                   
+        }
+
         // -------- Кнопки редактора и ф-ии для dgv --------
 
         //Кнопка "Сохр."
@@ -355,6 +376,12 @@ namespace Iscariot_Desk
         private void dgv_schedule_z_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             flag_saved = false;
+        }
+
+        //Загрузка dgvs
+        private void btn_schload_Click(object sender, EventArgs e)
+        {
+            get_from_server("load_dgvs");
         }
     }
 }
