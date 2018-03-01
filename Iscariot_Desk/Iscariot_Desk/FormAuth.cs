@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Net.Http;
+using Newtonsoft.Json.Linq;
 
 namespace Iscariot_Desk
 {
@@ -132,23 +134,51 @@ namespace Iscariot_Desk
         }
 
         //Триггер кнопки перехода к Рассписанию
-        private void btn_auth_Click(object sender, EventArgs e)
+        private async void btn_auth_Click(object sender, EventArgs e)
         {
-            
-            if ((string)cb_user.SelectedItem == "Редактор")
-            {
-                MessageBox.Show("Сделай проверку, лох!");
-                return;
-            }
-            
-            
-            this.Visible = false;
+            btn_auth.Enabled = false;
 
             FormSchedule form_shed = new FormSchedule();
 
+            if ((string)cb_user.SelectedItem == "Редактор")
+            {
+                string json_log = tb_log.Text;
+                string json_pass = tb_pass.Text;
+
+                string json_async_string = "http://iscariotserver.azurewebsites.net/api/logpass?login=" + json_log + "&password=" + json_pass;
+                string json = "";
+                try
+                {
+                    json = await (await new HttpClient().GetAsync(json_async_string)).Content.ReadAsStringAsync();
+
+                }
+                catch 
+                {
+                    MessageBox.Show("Отсутствует подключение.", "Ошибка подключения");
+                    btn_auth.Enabled = true;
+                    return;
+                }
+
+                JObject jObject = JObject.Parse(json);
+
+                //Проверка на статус
+                if (jObject["status"] == null || jObject["status"].ToString() != "ok")
+                {
+                    MessageBox.Show("Пользователь с таким логином/паролем не найден.", "Ошибка входа");
+                    btn_auth.Enabled = true;
+                    return;
+                }
+
+                form_shed.user_tokken = jObject["token"].ToString();
+            }
+
+            btn_auth.Enabled = true;
+
+            this.Visible = false;
+
             form_shed.user_group = (string)cb_user.SelectedItem;
 
-            form_shed.Visible = true;
+            form_shed.Visible = true;            
         }
 
         //выход из приложения по нажатию "Х"

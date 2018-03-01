@@ -33,11 +33,17 @@
             this.пользToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выйтиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gb_View = new System.Windows.Forms.GroupBox();
-            this.gb_edit = new System.Windows.Forms.GroupBox();
-            this.dgv_schedule_ch = new System.Windows.Forms.DataGridView();
-            this.dgv_schedule_z = new System.Windows.Forms.DataGridView();
-            this.lbl_ch = new System.Windows.Forms.Label();
+            this.cb_term = new System.Windows.Forms.ComboBox();
+            this.lbl_term = new System.Windows.Forms.Label();
+            this.cb_sec = new System.Windows.Forms.ComboBox();
+            this.lbl_sec = new System.Windows.Forms.Label();
+            this.cb_spec = new System.Windows.Forms.ComboBox();
+            this.lbl_spec = new System.Windows.Forms.Label();
+            this.cb_fak = new System.Windows.Forms.ComboBox();
+            this.lbl_fak = new System.Windows.Forms.Label();
             this.lbl_z = new System.Windows.Forms.Label();
+            this.lbl_ch = new System.Windows.Forms.Label();
+            this.dgv_schedule_z = new System.Windows.Forms.DataGridView();
             this.col_z = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mon_z = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tue_z = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,6 +52,7 @@
             this.fri_z = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sat_z = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sun_z = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgv_schedule_ch = new System.Windows.Forms.DataGridView();
             this.col_ch = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mon_ch = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tue_ch = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,18 +61,13 @@
             this.fri_ch = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sat_ch = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sun_ch = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lbl_fak = new System.Windows.Forms.Label();
-            this.cb_fak = new System.Windows.Forms.ComboBox();
-            this.cb_spec = new System.Windows.Forms.ComboBox();
-            this.lbl_spec = new System.Windows.Forms.Label();
-            this.cb_sec = new System.Windows.Forms.ComboBox();
-            this.lbl_sec = new System.Windows.Forms.Label();
-            this.cb_term = new System.Windows.Forms.ComboBox();
-            this.lbl_term = new System.Windows.Forms.Label();
+            this.gb_edit = new System.Windows.Forms.GroupBox();
+            this.btn_save = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.gb_View.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_schedule_ch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_schedule_z)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_schedule_ch)).BeginInit();
+            this.gb_edit.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -116,31 +118,115 @@
             this.gb_View.TabStop = false;
             this.gb_View.Text = "Рассписание:";
             // 
-            // gb_edit
+            // cb_term
             // 
-            this.gb_edit.Location = new System.Drawing.Point(12, 430);
-            this.gb_edit.Name = "gb_edit";
-            this.gb_edit.Size = new System.Drawing.Size(706, 58);
-            this.gb_edit.TabIndex = 2;
-            this.gb_edit.TabStop = false;
-            this.gb_edit.Text = "Окно редактирования:";
+            this.cb_term.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_term.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4"});
+            this.cb_term.Location = new System.Drawing.Point(571, 36);
+            this.cb_term.Name = "cb_term";
+            this.cb_term.Size = new System.Drawing.Size(101, 21);
+            this.cb_term.TabIndex = 11;
+            this.cb_term.TabStop = false;
+            this.cb_term.SelectedIndexChanged += new System.EventHandler(this.cb_term_SelectedIndexChanged);
             // 
-            // dgv_schedule_ch
+            // lbl_term
             // 
-            this.dgv_schedule_ch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_schedule_ch.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.col_ch,
-            this.mon_ch,
-            this.tue_ch,
-            this.wed_ch,
-            this.thu_ch,
-            this.fri_ch,
-            this.sat_ch,
-            this.sun_ch});
-            this.dgv_schedule_ch.Location = new System.Drawing.Point(6, 93);
-            this.dgv_schedule_ch.Name = "dgv_schedule_ch";
-            this.dgv_schedule_ch.Size = new System.Drawing.Size(694, 133);
-            this.dgv_schedule_ch.TabIndex = 0;
+            this.lbl_term.AutoSize = true;
+            this.lbl_term.Location = new System.Drawing.Point(526, 39);
+            this.lbl_term.Name = "lbl_term";
+            this.lbl_term.Size = new System.Drawing.Size(37, 13);
+            this.lbl_term.TabIndex = 10;
+            this.lbl_term.Text = "Курс :";
+            // 
+            // cb_sec
+            // 
+            this.cb_sec.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_sec.Items.AddRange(new object[] {
+            "Проф. 1"});
+            this.cb_sec.Location = new System.Drawing.Point(398, 36);
+            this.cb_sec.Name = "cb_sec";
+            this.cb_sec.Size = new System.Drawing.Size(101, 21);
+            this.cb_sec.TabIndex = 9;
+            this.cb_sec.TabStop = false;
+            this.cb_sec.SelectedIndexChanged += new System.EventHandler(this.cb_sec_SelectedIndexChanged);
+            // 
+            // lbl_sec
+            // 
+            this.lbl_sec.AutoSize = true;
+            this.lbl_sec.Location = new System.Drawing.Point(348, 39);
+            this.lbl_sec.Name = "lbl_sec";
+            this.lbl_sec.Size = new System.Drawing.Size(44, 13);
+            this.lbl_sec.TabIndex = 8;
+            this.lbl_sec.Text = "Проф. :";
+            // 
+            // cb_spec
+            // 
+            this.cb_spec.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_spec.Items.AddRange(new object[] {
+            "Строит.",
+            "ПМИ",
+            "ПИвЛ",
+            "МиИ",
+            "ФиИ"});
+            this.cb_spec.Location = new System.Drawing.Point(234, 36);
+            this.cb_spec.Name = "cb_spec";
+            this.cb_spec.Size = new System.Drawing.Size(101, 21);
+            this.cb_spec.TabIndex = 7;
+            this.cb_spec.TabStop = false;
+            this.cb_spec.SelectedIndexChanged += new System.EventHandler(this.cb_spec_SelectedIndexChanged);
+            // 
+            // lbl_spec
+            // 
+            this.lbl_spec.AutoSize = true;
+            this.lbl_spec.Location = new System.Drawing.Point(186, 39);
+            this.lbl_spec.Name = "lbl_spec";
+            this.lbl_spec.Size = new System.Drawing.Size(42, 13);
+            this.lbl_spec.TabIndex = 6;
+            this.lbl_spec.Text = "Напр. :";
+            // 
+            // cb_fak
+            // 
+            this.cb_fak.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_fak.Items.AddRange(new object[] {
+            "ФМФ",
+            "ХГФ"});
+            this.cb_fak.Location = new System.Drawing.Point(70, 36);
+            this.cb_fak.Name = "cb_fak";
+            this.cb_fak.Size = new System.Drawing.Size(101, 21);
+            this.cb_fak.TabIndex = 5;
+            this.cb_fak.TabStop = false;
+            this.cb_fak.SelectedIndexChanged += new System.EventHandler(this.cb_fak_SelectedIndexChanged);
+            // 
+            // lbl_fak
+            // 
+            this.lbl_fak.AutoSize = true;
+            this.lbl_fak.Location = new System.Drawing.Point(25, 39);
+            this.lbl_fak.Name = "lbl_fak";
+            this.lbl_fak.Size = new System.Drawing.Size(39, 13);
+            this.lbl_fak.TabIndex = 4;
+            this.lbl_fak.Text = "Фак. :";
+            // 
+            // lbl_z
+            // 
+            this.lbl_z.AutoSize = true;
+            this.lbl_z.Location = new System.Drawing.Point(3, 242);
+            this.lbl_z.Name = "lbl_z";
+            this.lbl_z.Size = new System.Drawing.Size(78, 13);
+            this.lbl_z.TabIndex = 3;
+            this.lbl_z.Text = "Знаменатель:";
+            // 
+            // lbl_ch
+            // 
+            this.lbl_ch.AutoSize = true;
+            this.lbl_ch.Location = new System.Drawing.Point(6, 77);
+            this.lbl_ch.Name = "lbl_ch";
+            this.lbl_ch.Size = new System.Drawing.Size(65, 13);
+            this.lbl_ch.TabIndex = 2;
+            this.lbl_ch.Text = "Числитель:";
             // 
             // dgv_schedule_z
             // 
@@ -158,24 +244,7 @@
             this.dgv_schedule_z.Name = "dgv_schedule_z";
             this.dgv_schedule_z.Size = new System.Drawing.Size(694, 133);
             this.dgv_schedule_z.TabIndex = 1;
-            // 
-            // lbl_ch
-            // 
-            this.lbl_ch.AutoSize = true;
-            this.lbl_ch.Location = new System.Drawing.Point(6, 77);
-            this.lbl_ch.Name = "lbl_ch";
-            this.lbl_ch.Size = new System.Drawing.Size(65, 13);
-            this.lbl_ch.TabIndex = 2;
-            this.lbl_ch.Text = "Числитель:";
-            // 
-            // lbl_z
-            // 
-            this.lbl_z.AutoSize = true;
-            this.lbl_z.Location = new System.Drawing.Point(3, 242);
-            this.lbl_z.Name = "lbl_z";
-            this.lbl_z.Size = new System.Drawing.Size(78, 13);
-            this.lbl_z.TabIndex = 3;
-            this.lbl_z.Text = "Знаменатель:";
+            this.dgv_schedule_z.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_schedule_z_CellEndEdit);
             // 
             // col_z
             // 
@@ -218,6 +287,24 @@
             this.sun_z.HeaderText = "ВС";
             this.sun_z.Name = "sun_z";
             // 
+            // dgv_schedule_ch
+            // 
+            this.dgv_schedule_ch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_schedule_ch.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.col_ch,
+            this.mon_ch,
+            this.tue_ch,
+            this.wed_ch,
+            this.thu_ch,
+            this.fri_ch,
+            this.sat_ch,
+            this.sun_ch});
+            this.dgv_schedule_ch.Location = new System.Drawing.Point(6, 93);
+            this.dgv_schedule_ch.Name = "dgv_schedule_ch";
+            this.dgv_schedule_ch.Size = new System.Drawing.Size(694, 133);
+            this.dgv_schedule_ch.TabIndex = 0;
+            this.dgv_schedule_ch.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_schedule_ch_CellEndEdit);
+            // 
             // col_ch
             // 
             this.col_ch.HeaderText = "П\\Д";
@@ -259,97 +346,25 @@
             this.sun_ch.HeaderText = "ВС";
             this.sun_ch.Name = "sun_ch";
             // 
-            // lbl_fak
+            // gb_edit
             // 
-            this.lbl_fak.AutoSize = true;
-            this.lbl_fak.Location = new System.Drawing.Point(25, 39);
-            this.lbl_fak.Name = "lbl_fak";
-            this.lbl_fak.Size = new System.Drawing.Size(39, 13);
-            this.lbl_fak.TabIndex = 4;
-            this.lbl_fak.Text = "Фак. :";
+            this.gb_edit.Controls.Add(this.btn_save);
+            this.gb_edit.Location = new System.Drawing.Point(12, 430);
+            this.gb_edit.Name = "gb_edit";
+            this.gb_edit.Size = new System.Drawing.Size(706, 51);
+            this.gb_edit.TabIndex = 2;
+            this.gb_edit.TabStop = false;
+            this.gb_edit.Text = "Окно редактирования:";
             // 
-            // cb_fak
+            // btn_save
             // 
-            this.cb_fak.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_fak.Items.AddRange(new object[] {
-            "ФМФ",
-            "ХГФ"});
-            this.cb_fak.Location = new System.Drawing.Point(70, 36);
-            this.cb_fak.Name = "cb_fak";
-            this.cb_fak.Size = new System.Drawing.Size(101, 21);
-            this.cb_fak.TabIndex = 5;
-            this.cb_fak.TabStop = false;
-            this.cb_fak.SelectedIndexChanged += new System.EventHandler(this.cb_fak_SelectedIndexChanged);
-            // 
-            // cb_spec
-            // 
-            this.cb_spec.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_spec.Items.AddRange(new object[] {
-            "Строит.",
-            "ПМИ",
-            "ПИвЛ",
-            "МиИ",
-            "ФиИ"});
-            this.cb_spec.Location = new System.Drawing.Point(234, 36);
-            this.cb_spec.Name = "cb_spec";
-            this.cb_spec.Size = new System.Drawing.Size(101, 21);
-            this.cb_spec.TabIndex = 7;
-            this.cb_spec.TabStop = false;
-            this.cb_spec.SelectedIndexChanged += new System.EventHandler(this.cb_spec_SelectedIndexChanged);
-            // 
-            // lbl_spec
-            // 
-            this.lbl_spec.AutoSize = true;
-            this.lbl_spec.Location = new System.Drawing.Point(186, 39);
-            this.lbl_spec.Name = "lbl_spec";
-            this.lbl_spec.Size = new System.Drawing.Size(42, 13);
-            this.lbl_spec.TabIndex = 6;
-            this.lbl_spec.Text = "Напр. :";
-            // 
-            // cb_sec
-            // 
-            this.cb_sec.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_sec.Items.AddRange(new object[] {
-            "Проф. 1"});
-            this.cb_sec.Location = new System.Drawing.Point(398, 36);
-            this.cb_sec.Name = "cb_sec";
-            this.cb_sec.Size = new System.Drawing.Size(101, 21);
-            this.cb_sec.TabIndex = 9;
-            this.cb_sec.TabStop = false;
-            this.cb_sec.SelectedIndexChanged += new System.EventHandler(this.cb_sec_SelectedIndexChanged);
-            // 
-            // lbl_sec
-            // 
-            this.lbl_sec.AutoSize = true;
-            this.lbl_sec.Location = new System.Drawing.Point(348, 39);
-            this.lbl_sec.Name = "lbl_sec";
-            this.lbl_sec.Size = new System.Drawing.Size(44, 13);
-            this.lbl_sec.TabIndex = 8;
-            this.lbl_sec.Text = "Проф. :";
-            // 
-            // cb_term
-            // 
-            this.cb_term.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_term.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4"});
-            this.cb_term.Location = new System.Drawing.Point(571, 36);
-            this.cb_term.Name = "cb_term";
-            this.cb_term.Size = new System.Drawing.Size(101, 21);
-            this.cb_term.TabIndex = 11;
-            this.cb_term.TabStop = false;
-            this.cb_term.SelectedIndexChanged += new System.EventHandler(this.cb_term_SelectedIndexChanged);
-            // 
-            // lbl_term
-            // 
-            this.lbl_term.AutoSize = true;
-            this.lbl_term.Location = new System.Drawing.Point(526, 39);
-            this.lbl_term.Name = "lbl_term";
-            this.lbl_term.Size = new System.Drawing.Size(37, 13);
-            this.lbl_term.TabIndex = 10;
-            this.lbl_term.Text = "Курс :";
+            this.btn_save.Location = new System.Drawing.Point(9, 19);
+            this.btn_save.Name = "btn_save";
+            this.btn_save.Size = new System.Drawing.Size(75, 23);
+            this.btn_save.TabIndex = 0;
+            this.btn_save.Text = "Сохр.";
+            this.btn_save.UseVisualStyleBackColor = true;
+            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
             // FormSchedule
             // 
@@ -370,8 +385,9 @@
             this.menuStrip1.PerformLayout();
             this.gb_View.ResumeLayout(false);
             this.gb_View.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_schedule_ch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_schedule_z)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_schedule_ch)).EndInit();
+            this.gb_edit.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -412,5 +428,6 @@
         private System.Windows.Forms.Label lbl_sec;
         private System.Windows.Forms.ComboBox cb_spec;
         private System.Windows.Forms.Label lbl_spec;
+        private System.Windows.Forms.Button btn_save;
     }
 }
