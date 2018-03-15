@@ -33,6 +33,7 @@
             this.пользToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выйтиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gb_View = new System.Windows.Forms.GroupBox();
+            this.btn_schload = new System.Windows.Forms.Button();
             this.cb_term = new System.Windows.Forms.ComboBox();
             this.lbl_term = new System.Windows.Forms.Label();
             this.cb_sec = new System.Windows.Forms.ComboBox();
@@ -63,7 +64,7 @@
             this.sun_ch = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gb_edit = new System.Windows.Forms.GroupBox();
             this.btn_save = new System.Windows.Forms.Button();
-            this.btn_schload = new System.Windows.Forms.Button();
+            this.lbl_editor_que = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.gb_View.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_schedule_z)).BeginInit();
@@ -120,6 +121,16 @@
             this.gb_View.TabStop = false;
             this.gb_View.Text = "Рассписание:";
             // 
+            // btn_schload
+            // 
+            this.btn_schload.Location = new System.Drawing.Point(625, 33);
+            this.btn_schload.Name = "btn_schload";
+            this.btn_schload.Size = new System.Drawing.Size(75, 22);
+            this.btn_schload.TabIndex = 12;
+            this.btn_schload.Text = "Загрузить";
+            this.btn_schload.UseVisualStyleBackColor = true;
+            this.btn_schload.Click += new System.EventHandler(this.btn_schload_Click);
+            // 
             // cb_term
             // 
             this.cb_term.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -133,7 +144,7 @@
             // lbl_term
             // 
             this.lbl_term.AutoSize = true;
-            this.lbl_term.Location = new System.Drawing.Point(465, 37);
+            this.lbl_term.Location = new System.Drawing.Point(464, 38);
             this.lbl_term.Name = "lbl_term";
             this.lbl_term.Size = new System.Drawing.Size(37, 13);
             this.lbl_term.TabIndex = 10;
@@ -152,7 +163,7 @@
             // lbl_sec
             // 
             this.lbl_sec.AutoSize = true;
-            this.lbl_sec.Location = new System.Drawing.Point(307, 37);
+            this.lbl_sec.Location = new System.Drawing.Point(310, 38);
             this.lbl_sec.Name = "lbl_sec";
             this.lbl_sec.Size = new System.Drawing.Size(44, 13);
             this.lbl_sec.TabIndex = 8;
@@ -171,7 +182,7 @@
             // lbl_spec
             // 
             this.lbl_spec.AutoSize = true;
-            this.lbl_spec.Location = new System.Drawing.Point(155, 37);
+            this.lbl_spec.Location = new System.Drawing.Point(158, 38);
             this.lbl_spec.Name = "lbl_spec";
             this.lbl_spec.Size = new System.Drawing.Size(42, 13);
             this.lbl_spec.TabIndex = 6;
@@ -180,7 +191,7 @@
             // cb_fak
             // 
             this.cb_fak.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_fak.Location = new System.Drawing.Point(51, 34);
+            this.cb_fak.Location = new System.Drawing.Point(51, 35);
             this.cb_fak.Name = "cb_fak";
             this.cb_fak.Size = new System.Drawing.Size(101, 21);
             this.cb_fak.TabIndex = 5;
@@ -190,7 +201,7 @@
             // lbl_fak
             // 
             this.lbl_fak.AutoSize = true;
-            this.lbl_fak.Location = new System.Drawing.Point(6, 37);
+            this.lbl_fak.Location = new System.Drawing.Point(6, 38);
             this.lbl_fak.Name = "lbl_fak";
             this.lbl_fak.Size = new System.Drawing.Size(39, 13);
             this.lbl_fak.TabIndex = 4;
@@ -334,6 +345,7 @@
             // 
             // gb_edit
             // 
+            this.gb_edit.Controls.Add(this.lbl_editor_que);
             this.gb_edit.Controls.Add(this.btn_save);
             this.gb_edit.Location = new System.Drawing.Point(12, 430);
             this.gb_edit.Name = "gb_edit";
@@ -352,15 +364,14 @@
             this.btn_save.UseVisualStyleBackColor = true;
             this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
-            // btn_schload
+            // lbl_editor_que
             // 
-            this.btn_schload.Location = new System.Drawing.Point(625, 33);
-            this.btn_schload.Name = "btn_schload";
-            this.btn_schload.Size = new System.Drawing.Size(75, 21);
-            this.btn_schload.TabIndex = 12;
-            this.btn_schload.Text = "Загрузить";
-            this.btn_schload.UseVisualStyleBackColor = true;
-            this.btn_schload.Click += new System.EventHandler(this.btn_schload_Click);
+            this.lbl_editor_que.AutoSize = true;
+            this.lbl_editor_que.Location = new System.Drawing.Point(112, 24);
+            this.lbl_editor_que.Name = "lbl_editor_que";
+            this.lbl_editor_que.Size = new System.Drawing.Size(438, 13);
+            this.lbl_editor_que.TabIndex = 1;
+            this.lbl_editor_que.Text = "Для редактора: внесите изменения в окнах выше и сохраните, нажав кнопку слева.";
             // 
             // FormSchedule
             // 
@@ -384,6 +395,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_schedule_z)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_schedule_ch)).EndInit();
             this.gb_edit.ResumeLayout(false);
+            this.gb_edit.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -426,5 +438,6 @@
         private System.Windows.Forms.Label lbl_spec;
         private System.Windows.Forms.Button btn_save;
         private System.Windows.Forms.Button btn_schload;
+        private System.Windows.Forms.Label lbl_editor_que;
     }
 }

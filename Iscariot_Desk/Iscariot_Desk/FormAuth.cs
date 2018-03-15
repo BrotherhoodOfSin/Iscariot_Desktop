@@ -145,7 +145,7 @@ namespace Iscariot_Desk
                 string json_log = tb_log.Text;
                 string json_pass = tb_pass.Text;
 
-                string json_async_string = "http://iscariotserver.azurewebsites.net/api/logpass?login=" + json_log + "&password=" + json_pass;
+                string json_async_string = "http://iscariotserver1.azurewebsites.net/api/logpass?login=" + json_log + "&password=" + json_pass;
                 string json = "";
                 try
                 {
@@ -181,7 +181,7 @@ namespace Iscariot_Desk
             form_shed.Visible = true;            
         }
 
-        //выход из приложения по нажатию "Х"
+        //Выход из приложения по нажатию "Х"
         private void FormAuth_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
